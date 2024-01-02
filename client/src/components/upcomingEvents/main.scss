@@ -1,0 +1,89 @@
+@import "../../styles/variables.scss";
+
+.upcoming-events {
+  >.container {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    padding: 10px;
+
+    >.title {
+      margin-bottom: 30px;
+      font-size: 17px;
+      font-weight: 700;
+    }
+
+    .loading {
+      max-width: 40px;
+      margin: auto;
+    }
+
+    .lecture {
+      margin-bottom: 25px;
+
+      .container-lec {
+        display: flex;
+        flex-direction: row;
+        align-items: start;
+        gap: 15px;
+
+        .calender {
+          border: 1px solid $main-color-lit;
+          border-radius: 5px;
+          width: 55px;
+          height: 50px;
+          background-color: #a5dad926;
+          text-align: center;
+          font-size: 12px;
+
+          .mon {
+            width: 100%;
+            font-weight: 500;
+            height: 20px;
+            border-bottom: 1px solid $main-color-lit;
+            line-height: 20px;
+            text-transform: uppercase;
+          }
+
+          .day {
+            width: 100%;
+            font-weight: 500;
+            height: 30px;
+            line-height: 30px;
+            font-size: 18px;
+          }
+
+        }
+
+        .inf {
+          color: $text-color;
+          width: 100%;
+          overflow: hidden;
+
+          .title {
+            font-size: 20px;
+            margin-bottom: 5px;
+            white-space: nowrap;
+            white-space: nowrap;
+            width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+
+          .date {
+            font-size: 14px;
+            color: $main-color;
+          }
+        }
+
+        .lec-remaining {
+          width: 40px;
+          max-width: 40px;
+          height: 100%;
+        }
+      }
+    }
+
+
+  }
+}

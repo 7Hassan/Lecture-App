@@ -1,0 +1,145 @@
+@import "../../styles/variables.scss";
+
+
+
+.navbar {
+  background-color: white;
+  box-shadow: 0px 1px 1px #00000036;
+  position: relative;
+
+  .grade {
+    position: absolute;
+    right: 90px;
+    top: calc(100%);
+    border: 1px solid $main-color;
+    border-top: none;
+    background-color: white;
+    border-radius: 0 0 10px 10px;
+    width: 200px;
+    z-index: 1;
+    box-shadow: $box-sh;
+    cursor: pointer;
+    overflow: hidden;
+    transition: .5s;
+
+    &.hidden {
+      top: calc(100% - 260px);
+    }
+
+    ul {
+      li {
+        list-style: none;
+        padding: 20px 10px;
+        color: $text-color;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        text-transform: capitalize;
+
+
+        &.selected {
+          color: $main-color;
+        }
+
+        &:hover {
+          background-color: $bg-color;
+        }
+      }
+    }
+  }
+
+  .container-st {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 0;
+    position: sticky;
+    z-index: 2;
+    background-color: white;
+
+    .content {
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      gap: 30px;
+
+      .grade-hd {
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        gap: 10px;
+        color: $main-color;
+        font-weight: 800;
+        cursor: pointer;
+        border: 1px solid $main-color;
+        border-radius: 10px;
+        padding: 10px 15px;
+        letter-spacing: 1.1px;
+        text-transform: capitalize;
+        width: 122px;
+        justify-content: space-between;
+      }
+    }
+
+    .logo,
+    .user .image {
+      width: 50px;
+      height: 50px;
+      background-color: blue;
+      border-radius: 50%;
+
+      img {
+        width: 100%;
+      }
+    }
+
+    .user {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 10px;
+
+      .text {
+        color: $main-color;
+        font-weight: 700;
+        max-width: 127px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-wrap: nowrap;
+      }
+    }
+
+
+
+    .Auth {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 20px;
+
+      .login {
+        background-color: transparent;
+        color: $main-color;
+        border: 1px solid $main-color;
+        padding: 7px 15px;
+        border-radius: 7px;
+        font-size: 17px;
+        cursor: pointer;
+      }
+
+      .register {
+        background-color: transparent;
+        border: none;
+        color: white;
+        background-color: $main-color;
+        padding: 7px 15px;
+        border-radius: 7px;
+        font-size: 17px;
+        cursor: pointer;
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+@import "../../styles/variables.scss";
+
+.home {
+  .container-st {
+    >div {
+      margin-top: 50px;
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: $box-sh;
+      background-color: white;
+    }
+  }
+}

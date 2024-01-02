@@ -1,0 +1,101 @@
+@import "./variables.scss";
+
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+
+.container-st {
+  margin: auto;
+  width: 90%;
+}
+
+.loading {
+  animation: rotate 1.5s linear infinite;
+}
+
+button.disabled {
+  opacity: .5;
+  cursor: not-allowed !important;
+}
+
+.app {
+  background-color: $bg-color;
+  padding-bottom: 50px;
+  min-height: 100vh;
+}
+
+form {
+  .input {
+    margin-bottom: 30px;
+
+    &.password {
+      position: relative;
+
+      input {
+        letter-spacing: 5px;
+        padding-right: 40px;
+      }
+
+      .icons {
+        cursor: pointer;
+        color: $text-color;
+        position: absolute;
+        right: 10px;
+        top: 11px;
+
+      }
+    }
+
+    input,
+    #grades {
+      width: 100%;
+      border: 1px solid #E0E1E3;
+      border-radius: 7px;
+      height: 40px;
+      padding: 10px;
+      font-size: 17px;
+      color: #0000009e;
+
+      &::placeholder {
+        opacity: .5;
+        letter-spacing: 1px;
+      }
+
+      &:focus {
+        outline: 2px solid $main-color-lit;
+        border: none;
+      }
+    }
+  }
+
+  .action {
+    max-width: 250px;
+    margin: auto;
+
+    button {
+      width: 100%;
+      background-color: transparent;
+      border: none;
+      color: white;
+      background-color: $main-color;
+      padding: 10px 10px;
+      border-radius: 7px;
+      font-size: 17px;
+      box-shadow: 0px 0px 6px 1px rgb(0 0 0 / 8%);
+      cursor: pointer;
+      height: 40px;
+      img{
+        height: 20px;
+      }
+    }
+  }
+
+}

@@ -1,0 +1,56 @@
+@import "../../styles/variables.scss";
+
+
+.auth {
+  max-width: 500px;
+  margin: auto;
+  padding-top: 40px;
+
+  .container-st {
+    border-radius: 10px;
+    padding: 30px 15px;
+    box-shadow: $box-sh;
+    background-color: white;
+
+    .header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 40px;
+      gap: 15px;
+
+      .img {
+        width: 100px;
+        height: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0px 0px 50px 37px #61aeae38;
+        border-radius: 50%;
+        overflow: hidden;
+      }
+
+      .welcome {
+        font-weight: 550;
+        font-size: 20px;
+        color: black;
+      }
+
+      p {
+        color: $text-color;
+      }
+    }
+    .sign-up {
+      margin-top: 20px;
+      .text {
+        color: $text-color;
+        text-align: center;
+
+        a {
+          color: black;
+        }
+      }
+    }
+  }
+}
