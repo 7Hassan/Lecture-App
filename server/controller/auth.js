@@ -80,8 +80,7 @@ exports.login = catchError(async (req, res, next) => {
   if (!isMatch) return next(new AppError('Incorrect Password', 401))
   const jwtToken = helper.createJwtToken(user._id)
   const { firstName, lastName, img } = user;
-  res.cookie('jwt', jwtToken, helper.cookieOptions)
-  res.status(200).json({ success: true, data: { firstName, lastName, img }})
+  res.cookie('jwt', jwtToken, helper.cookieOptions).status(200).json({ success: true, data: { firstName, lastName, img } })
 })
 
 

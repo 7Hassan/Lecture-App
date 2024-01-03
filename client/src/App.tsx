@@ -7,27 +7,34 @@ import "./styles/global.scss";
 import { Register } from "./pages/auth/register";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { url } from "./utils/variables";
-import axios from "axios";
+import { User } from "./utils/interfaces";
 
 
 function App() {
-  const [user, setUser] = useState(null);
-  console.log('🚀 ~ user:', user)
+  const [user, setUser] = useState<User | null>(null);
+  const isAuth = useMemo(() => !!user, [user]);
 
   useEffect(() => {
-    axios.get(`${url}/api/user`)
+    fetch(`${url}/api/user`, {
+      method: 'GET',
+      credentials: 'include',
+      headers: {
+        "Content-Type": "application/json",
+      }
+    })
+      .then(async (res) => res.json())
       .then((res) => {
-        if (!res.data.success) throw new Error(res.data.msg);
-        setUser(res.data.data)
+        if (!res.success) throw new Error(res.data.msg);
+        setUser(res.data)
       }).catch(() => 0)
   }, []);
 
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Home />
+      element: <Home user={user} isAuth={isAuth} />
     },
     {
       path: "login",

@@ -22,10 +22,6 @@ exports.user = catchError(async (req, res, next) => {
 
 
 exports.tables = catchError(async (req, res, next) => {
-  // const grades = ["first", "second", "third", "fourth"];
-  // grades.map(async (grade) => {
-  //   await Table.create({ grade });
-  // });
   const tables = await Table.find();
   res.status(201).send({ success: true, data: { tables } })
 })

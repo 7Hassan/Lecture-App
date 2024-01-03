@@ -2,7 +2,6 @@ const path = require('path')
 const express = require('express')
 const morgan = require('morgan')
 const bodyParser = require('body-parser');
-const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const compression = require('compression')
 const AppError = require('./Errors/classError')
@@ -14,39 +13,23 @@ const xssClean = require('xss-clean')
 const hpp = require('hpp')
 const cors = require('cors')
 const helmet = require('helmet');
-const multer = require('multer');
-const helper = require('./controller/helperFunc')
 
 
 dotenv.config({ path: './.env' });
 const app = express();
 app.use(cookieParser());
-app.use(session({
-  secret: process.env.SESSION_SECRET,
-  key: 'client.side',
-  saveUninitialized: true,
-  resave: true,
-  cookie: {
-    maxAge: 30 * 24 * 60 * 60 * 100,
-    secure: false,
-    httpOnly: false,
-  }
-}));
 app.use(express.json())
-app.enable('trust proxy')
-// app.set('trust proxy', 1)
+app.set('trust proxy', 1)
 app.use(morgan('tiny'))
 app.use(compression())
-// app.use(helmet())
-// app.use(helmet.crossOriginResourcePolicy({ policy: 'cross-origin' }))
+app.use(helmet())
+app.use(helmet.crossOriginResourcePolicy({ policy: 'cross-origin' }))
 app.use(morgan('common'))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(mongoSanitize())
 app.use(xssClean())
 app.use(hpp())
-
-
 
 const corsOptions = {
   origin: 'http://localhost:5173',
@@ -63,7 +46,7 @@ app.use(async (req, res, next) => {
 
 const limiter = limitReq({
   max: 200,
-  windowMs: 1000 * 60 * 60, // 1 Hour
+  windowMs: 1000 * 60 * 60, 
   message: 'Too many requests, try again after one hour'
 })
 

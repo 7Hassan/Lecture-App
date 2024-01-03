@@ -5,10 +5,9 @@ import { useState, useMemo, useEffect } from "react";
 import { Link } from "react-router-dom"
 import "./main.scss";
 import { user } from '../../utils/interfaces';
-import axios from 'axios';
 import { Loading, url } from '../../utils/variables';
 import { toast } from 'react-toastify';
-import { redirect } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Password = ({ password, handleChange }: { password: string, handleChange: (name: string, value: string) => void }) => {
   const [passShow, setPassShow] = useState(false)
@@ -37,25 +36,31 @@ export const Login = ({ setUser }: { setUser: React.Dispatch<React.SetStateActio
   const isDisabledForm = useMemo(() => !email || !password || !isEmail || password.length < 8,
     [email, password, isEmail]);
   const handleChange = (name: string, value: string) => setForm({ ...form, [name]: value })
-
+  const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault()
     if (!isDisabledForm && !loading) setLoading(true);
   }
-
+  navigate("/");
   useEffect(() => {
     if (!loading || isDisabledForm) return;
-    axios.post(`${url}/auth/login`, { ...form, withCredentials: true, })
-      .then((res) => {
-        if (!res.data.success) throw new Error(res.data.msg);
-        console.log('🚀 ~ res:', res)
-        setUser(res.data.data);
+    fetch("http://localhost:8000/auth/login", {
+      method: 'POST',
+      body: JSON.stringify(form),
+      credentials: 'include',
+      headers: {
+        "Content-Type": "application/json",
+      }
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (!data.success) throw new Error(data.msg);
+        setUser(data.data);
+        
         setLoading(false);
-        return redirect("/");
-      }).catch((err) => {
-        const msg = err.response.data.msg
-        toast.error(msg);
+      }).catch((error) => {
         setLoading(false);
+        toast.error(error.message);
       })
   }, [form, loading, setUser, isDisabledForm]);
 

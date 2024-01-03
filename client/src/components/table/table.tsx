@@ -21,7 +21,7 @@ const Action = () => {
       }
 
       {
-        loading && <Loading />
+        loading && <Loading type="color"/>
       }
     </div>
   </td>
@@ -62,7 +62,7 @@ const TableBody = ({ table }: { table: TableInterface | undefined }) => {
 }
 
 
-export const Table = ({ table }: { table: TableInterface | undefined }) => {
+export const Table = ({ table, isAuth }: { table: TableInterface | undefined, isAuth: boolean }) => {
 
   return <div className="table">
     <div className="btns">
@@ -72,9 +72,11 @@ export const Table = ({ table }: { table: TableInterface | undefined }) => {
           Export
         </p>
       </button>
-      <button>
-        Add Lecture
-      </button>
+      {isAuth &&
+        <button>
+          Add Lecture
+        </button>
+      }
     </div>
 
     <div className="container">

@@ -6,7 +6,7 @@ import { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import { url } from "../../utils/variables";
 import { toast } from "react-toastify";
-import { Tables } from "../../utils/interfaces";
+import { Tables, User } from "../../utils/interfaces";
 import { Table } from "../../components/table/table";
 
 
@@ -14,7 +14,7 @@ import { Table } from "../../components/table/table";
 
 
 
-export const Home = () => {
+export const Home = ({ user, isAuth }: { user: User | null, isAuth: boolean }) => {
   const [grade, setGrade] = useState<string>("first");
   const [tables, setTables] = useState<Tables | null>(null);
   const table = useMemo(() => tables?.filter((t) => t.grade === grade)[0], [tables, grade]);
@@ -34,13 +34,13 @@ export const Home = () => {
   }, [])
 
   return <>
-    <Nav grade={grade} setGrade={setGrade} />
+    <Nav grade={grade} setGrade={setGrade} user={user} />
     <div className="contain">
       <div className="content-container">
         <div className="home">
           <div className="container-st">
             <UpcomingEvents table={table} />
-            <Table table={table} />
+            <Table table={table} isAuth={isAuth} />
           </div>
         </div>
       </div>

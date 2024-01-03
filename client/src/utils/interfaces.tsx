@@ -26,7 +26,7 @@ export interface Table {
 
 export interface Tables extends Array<Table> { }
 
-export interface user {
+export interface User {
   firstName: string;
   lastName: string;
   img: string;

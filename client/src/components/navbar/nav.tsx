@@ -3,29 +3,27 @@ import { faChevronDown, faCheck } from '@fortawesome/free-solid-svg-icons';
 import { Link } from "react-router-dom";
 import { useState } from "react"
 import "./main.scss"
+import { User as UserInterface } from '../../utils/interfaces';
 
 interface NavProps {
   setGrade: React.Dispatch<React.SetStateAction<string>>;
   grade: string,
+  user: UserInterface | null
 }
 
-interface GradeProps extends NavProps {
+interface GradeProps {
+  setGrade: React.Dispatch<React.SetStateAction<string>>;
+  grade: string,
   setHidden: React.Dispatch<React.SetStateAction<boolean>>;
   hidden: boolean,
 }
 
 
-const User = () => {
-  const admin = true;
+const User = ({ img }: { img: string }) => {
   return <div className="user">
     <div className="image">
-      <img src="image.PNG" alt="image" />
+      <img src={`${img}`} alt="image" />
     </div>
-    {!admin &&
-      <div className="text">
-        Hassan Hossam
-      </div>
-    }
   </div>
 }
 
@@ -34,11 +32,6 @@ const Auth = () => {
     <Link to="login">
       <div className="login">
         Login
-      </div>
-    </Link>
-    <Link to="register">
-      <div className="register">
-        Resister
       </div>
     </Link>
   </div>
@@ -71,8 +64,7 @@ const Grade: React.FC<GradeProps> = ({ hidden, setHidden, grade, setGrade }) => 
   </div>
 }
 
-export const Nav: React.FC<NavProps> = ({ grade, setGrade }) => {
-  const user = true;
+export const Nav: React.FC<NavProps> = ({ grade, user, setGrade }) => {
   const [gradeScroll, setGradeScroll] = useState<boolean>(true)
   return <>
     <div className="navbar">
@@ -87,7 +79,7 @@ export const Nav: React.FC<NavProps> = ({ grade, setGrade }) => {
             <FontAwesomeIcon icon={faChevronDown} />
           </div>
 
-          {user && <User />}
+          {user && <User img={user.img} />}
           {!user && <Auth />}
         </div>
       </div>
