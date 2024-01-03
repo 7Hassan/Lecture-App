@@ -4,8 +4,9 @@ import { faEyeSlash, faEye } from '@fortawesome/free-solid-svg-icons';
 import { useState, useMemo, useEffect } from "react";
 import { Link } from "react-router-dom"
 import "./main.scss";
-import { user } from '../../utils/interfaces';
-import { Loading, url } from '../../utils/variables';
+import { User } from '../../utils/interfaces';
+import { url } from '../../utils/variables';
+import { Loading } from '../../utils/components';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
@@ -27,7 +28,7 @@ const Password = ({ password, handleChange }: { password: string, handleChange: 
 
 
 
-export const Login = ({ setUser }: { setUser: React.Dispatch<React.SetStateAction<user | null>> }) => {
+export const Login = ({ setUser }: { setUser: React.Dispatch<React.SetStateAction<User | null>> }) => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({ email: '', password: '' })
@@ -41,10 +42,9 @@ export const Login = ({ setUser }: { setUser: React.Dispatch<React.SetStateActio
     e.preventDefault()
     if (!isDisabledForm && !loading) setLoading(true);
   }
-  navigate("/");
   useEffect(() => {
     if (!loading || isDisabledForm) return;
-    fetch("http://localhost:8000/auth/login", {
+    fetch(`${url}/auth/login`, {
       method: 'POST',
       body: JSON.stringify(form),
       credentials: 'include',
@@ -56,13 +56,13 @@ export const Login = ({ setUser }: { setUser: React.Dispatch<React.SetStateActio
       .then((data) => {
         if (!data.success) throw new Error(data.msg);
         setUser(data.data);
-        
         setLoading(false);
+        navigate("/")
       }).catch((error) => {
         setLoading(false);
         toast.error(error.message);
       })
-  }, [form, loading, setUser, isDisabledForm]);
+  }, [form, loading, setUser, isDisabledForm, navigate]);
 
   return <div className="auth">
     <div className="container-st">

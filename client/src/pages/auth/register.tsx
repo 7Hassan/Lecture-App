@@ -1,10 +1,14 @@
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEyeSlash, faEye } from '@fortawesome/free-solid-svg-icons'
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
-import { useState, useMemo } from "react"
+import { useState, useMemo, useEffect } from "react"
 import "./main.scss";
+import { User } from '../../utils/interfaces';
+import { toast } from 'react-toastify';
+import { url } from '../../utils/variables';
+import { Loading } from '../../utils/components';
 const Password = ({ password, handleChange }: { password: string, handleChange: (name: string, value: string) => void }) => {
   const [passShow, setPassShow] = useState(false)
 
@@ -17,19 +21,45 @@ const Password = ({ password, handleChange }: { password: string, handleChange: 
     </div>
   </div>
 }
-export const Register = () => {
-  const [form, setForm] = useState({ firstName: '', lastName: '', grade: 'first', email: '', password: '' })
-  const { firstName, lastName, grade, email, password } = form
-  console.log('🚀 ~ grade:', grade)
-  const isDisabledForm = useMemo(() => !firstName || !lastName || !email || !password, [firstName, lastName, email, password])
+export const Register = ({ setUser }: { setUser: React.Dispatch<React.SetStateAction<User | null>> }) => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const navigate = useNavigate()
+  const [loading, setLoading] = useState(false);
+  const [form, setForm] = useState({ firstName: '', lastName: '', code: '', email: '', password: '' })
+  const { firstName, lastName, code, email, password } = form
+  const isEmail = useMemo(() => emailRegex.test(email), [email])
+
+  const isDisabledForm = useMemo(() => !firstName || !lastName || !email || !code
+    || !password || !isEmail || password.length < 8,
+    [firstName, lastName, email, code, password, isEmail]);
+
   const handleChange = (name: string, value: string) => setForm({ ...form, [name]: value })
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    if (!isDisabledForm) {
-      console.log(form)
-    }
+    if (!isDisabledForm && !loading) setLoading(true);
   }
+  useEffect(() => {
+    if (!loading || isDisabledForm) return;
+    fetch(`${url}/auth/signup`, {
+      method: 'POST',
+      body: JSON.stringify(form),
+      credentials: 'include',
+      headers: {
+        "Content-Type": "application/json",
+      }
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (!data.success) throw new Error(data.msg);
+        setUser(data.data);
+        setLoading(false);
+        navigate("/")
+      }).catch((error) => {
+        setLoading(false);
+        toast.error(error.message);
+      })
+  }, [form, loading, setUser, isDisabledForm, navigate]);
 
 
   return <div className="auth">
@@ -55,13 +85,20 @@ export const Register = () => {
               value={lastName} onChange={e => handleChange(e.target.name, e.target.value)} />
           </div>
           <div className="input">
+            <input type="text" placeholder='Code' className="input-field" name="code"
+              value={code} onChange={e => handleChange(e.target.name, e.target.value)} />
+          </div>
+          <div className="input">
             <input type="text" placeholder='Email' className="input-field" name="email"
               value={email} onChange={e => handleChange(e.target.name, e.target.value)} />
           </div>
           <Password password={password} handleChange={handleChange} />
           <div className="action">
             <button type='submit' disabled={isDisabledForm}
-              className={`action-button ${isDisabledForm && 'disabled'}`}>Sign Up</button>
+              className={`action-button ${isDisabledForm && 'disabled'}`}>
+              {!loading && "Sign Up"}
+              {loading && <Loading type="white" />}
+            </button>
           </div>
         </form>
       </div>

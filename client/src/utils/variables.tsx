@@ -1,11 +1,7 @@
 
 
-export const url = 'http://localhost:8000'
+export const url = 'http://localhost:8000';
+export const grades = ["first", "second", "third", "fourth"];
+export const days = ["Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
 
-export const Loading = ({ type }: { type: string }) => {
-  return <>
-    {type === "white" && <img src="loading-white.png" alt="loading" className="loading" />}
-    {type === "color" && <img src="loading.png" alt="loading" className="loading" />}
-  </>
 
-}

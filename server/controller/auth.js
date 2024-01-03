@@ -5,10 +5,6 @@ const AppError = require('../Errors/classError')
 const helper = require('./helperFunc')
 // const Email = require('./email')
 
-
-
-
-
 exports.checkEmail = catchError(async (req, res, next) => {
   const email = req.body.email
   const user = await User.findOne({ email })
@@ -34,8 +30,6 @@ exports.protectAuth = async (req, res, next) => {
   if (!user || user.isChangedPass(time)) return next()
   next(new AppError('You are register', 401))
 }
-
-
 
 exports.verify = async (req, res, next) => {
   const token = crypto.createHash('sha256').update(req.params.token).digest('hex')
@@ -69,7 +63,6 @@ exports.signUp = catchError(async (req, res, next) => {
 })
 
 exports.login = catchError(async (req, res, next) => {
-  console.log('🚀 ~ req:', req.cookies)
   const { email, password } = req.body
   if (!email) return next(new AppError('Email required', 401))
   if (!password) return next(new AppError('Password required', 401))
@@ -78,6 +71,11 @@ exports.login = catchError(async (req, res, next) => {
   if (!user) return next(new AppError('Incorrect Email', 401))
   const isMatch = await user.isCorrectPass(password, user.password)
   if (!isMatch) return next(new AppError('Incorrect Password', 401))
+  const jwtToken = helper.createJwtToken(user._id)
+  const { firstName, lastName, img } = user;
+  res.cookie('jwt', jwtToken, helper.cookieOptions).status(200).json({ success: true, data: { firstName, lastName, img } })
+})
+exports.logout = catchError(async (req, res, next) => {
   const jwtToken = helper.createJwtToken(user._id)
   const { firstName, lastName, img } = user;
   res.cookie('jwt', jwtToken, helper.cookieOptions).status(200).json({ success: true, data: { firstName, lastName, img } })

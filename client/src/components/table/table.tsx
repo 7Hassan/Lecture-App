@@ -1,48 +1,77 @@
 
 import { format } from "date-fns";
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { Lecture as LectureInterface, Table as TableInterface } from "../../utils/interfaces";
 import "./main.scss"
-import { Loading } from "../../utils/variables";
+import { Loading } from "../../utils/components";
+import { days, url } from "../../utils/variables";
+import { toast } from "react-toastify";
 
-const Action = () => {
+
+
+
+
+const Action = ({ lecId, setTables }: { lecId: string }) => {
   const [loading, setLoading] = useState(false);
+  const [id, setId] = useState<null | string>(null)
+  useEffect(() => {
+    if (!id) return;
+    setLoading(true)
+    fetch(`${url}/api/table/${id}`, {
+      method: 'DELETE',
+      credentials: 'include',
+      headers: {
+        "Content-Type": "application/json",
+      }
+    }).then(async (res) => res.json())
+      .then((res) => {
+        setLoading(false)
+        if (!res.success) throw new Error(res.data.msg);
+        setTables(res.data.tables)
+      }).catch((err) => {
+        setLoading(false)
+        const errRes = err.message
+        toast.error(errRes);
+      })
+  }, [id, setTables]);
+
 
   return <td className="actions">
     <div className="edit">
-      <Link to="">
+      <Link to={lecId}>
         <img src="edit.png" alt="edit" />
       </Link>
     </div>
-    <div className="remove" onClick={() => setLoading(!loading)}>
-      {!loading &&
+    <div className="remove" onClick={() => setId(lecId)}>
+      {
+        !loading &&
         <img src="remove.png" alt="remove" />
       }
 
       {
-        loading && <Loading type="color"/>
+        loading && <Loading type="color" />
       }
     </div>
   </td>
 }
 
-const Lecture = ({ lec }: { lec: LectureInterface }) => {
-  const { name, location, doctor, start, end } = lec;
-  const admin = true;
+const Lecture = ({ lec, isAuth, setTables }: { lec: LectureInterface, isAuth: boolean }) => {
+  const { name, location, doctor, start, end, _id } = lec;
+
   return <tr className="lec">
     <td></td>
     <td> {name}</td>
     <td>{doctor}</td>
     <td>{location}</td>
-    <td>{format(start, "p")} - {format(end, "p")}</td>
-    {admin && <Action />}
+    <td>{format(new Date(start), "p")} - {format(new Date(end), "p")}</td>
+    {isAuth && <Action lecId={_id} setTables={setTables} />}
   </tr>
 }
 
 
-const TableBody = ({ table }: { table: TableInterface | undefined }) => {
-  const days = ["Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+const TableBody = ({ table, isAuth, setTables }: { table: TableInterface | undefined, isAuth: boolean }) => {
+
   return <tbody>
     {
       days.map((d) => {
@@ -53,7 +82,7 @@ const TableBody = ({ table }: { table: TableInterface | undefined }) => {
             <th scope="row">{day}</th>
           </tr>
           {
-            Array.isArray(lectures) && lectures.map((lec: LectureInterface) => <Lecture key={lec._id} lec={lec} />)
+            Array.isArray(lectures) && lectures.map((lec: LectureInterface) => <Lecture key={lec._id} lec={lec} isAuth={isAuth} setTables={setTables} />)
           }
         </React.Fragment>
       })
@@ -62,7 +91,7 @@ const TableBody = ({ table }: { table: TableInterface | undefined }) => {
 }
 
 
-export const Table = ({ table, isAuth }: { table: TableInterface | undefined, isAuth: boolean }) => {
+export const Table = ({ table, isAuth, setTables }: { table: TableInterface | undefined, isAuth: boolean }) => {
 
   return <div className="table">
     <div className="btns">
@@ -74,7 +103,9 @@ export const Table = ({ table, isAuth }: { table: TableInterface | undefined, is
       </button>
       {isAuth &&
         <button>
-          Add Lecture
+          <Link to="addLecture">
+            Add Lecture
+          </Link>
         </button>
       }
     </div>
@@ -94,7 +125,7 @@ export const Table = ({ table, isAuth }: { table: TableInterface | undefined, is
               <th scope="col">Time</th>
             </tr>
           </thead>
-          <TableBody table={table} />
+          <TableBody table={table} isAuth={isAuth} setTables={setTables} />
         </table>
       </div>
     </div>

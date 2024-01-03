@@ -8,19 +8,24 @@ const lecture = {
     type: String,
     required: [true, 'Name of lecture is required'],
     maxlength: [50, 'Name of lecture is too long'],
-    minlength: [3, 'Name of lecture is too short']
+    minlength: [1, 'Name of lecture is too short']
   },
   location: {
     type: String,
     required: [true, 'Location is required'],
     maxlength: [50, 'Location is too long'],
-    minlength: [3, 'Location is too short']
+    minlength: [1, 'Location is too short']
+  },
+  day: {
+    type: String,
+    required: [true, 'Day is required'],
+    enum: ['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
   },
   doctor: {
     type: String,
     required: [true, 'Doctor is required'],
     maxlength: [50, 'Doctor name is too long'],
-    minlength: [3, 'Doctor name is too short']
+    minlength: [1, 'Doctor name is too short']
   },
   start: {
     type: Date,

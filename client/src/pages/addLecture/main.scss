@@ -1,0 +1,8 @@
+@import "../../styles/variables.scss";
+
+.welcome {
+  span {
+    color: $main-color;
+    text-transform: capitalize;
+  }
+}

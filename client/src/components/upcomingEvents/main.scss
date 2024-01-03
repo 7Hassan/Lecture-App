@@ -76,6 +76,19 @@
           }
         }
 
+        .icon {
+          height: 50px;
+          max-width: 40px;
+          width: 40px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          svg {
+            color: $main-color;
+            font-size: 24px;
+          }
+        }
+
         .lec-remaining {
           width: 40px;
           max-width: 40px;
@@ -83,7 +96,5 @@
         }
       }
     }
-
-
   }
 }
