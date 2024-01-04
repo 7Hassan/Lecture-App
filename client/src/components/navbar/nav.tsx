@@ -4,8 +4,9 @@ import { Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react"
 import "./main.scss"
 import { User as UserInterface } from '../../utils/interfaces';
-import { grades } from '../../utils/variables';
+import { grades, url } from '../../utils/variables';
 import { portSaid } from '../../assets/images';
+import { toast } from 'react-toastify';
 interface NavProps {
   user: UserInterface | null
   grade: string | null;
@@ -73,12 +74,28 @@ const Grade: React.FC<GradeProps> = ({ hidden, setHidden, grade, setGrade, grade
 
 
 const Logout = ({ setUser }: { setUser: React.Dispatch<React.SetStateAction<UserInterface | null>> }) => {
-  const logout = () => {
-    document.cookie = `jwt=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/;`;
-    setUser(null)
-  }
+  const [logOut, setLogOut] = useState(false);
 
-  return <div className="Auth" onClick={() => logout()}>
+  useEffect(() => {
+    if (!logOut) return;
+    fetch(`${url}/auth/logout`, {
+      method: 'GET',
+      credentials: 'include',
+      headers: { "Content-Type": "application/json" }
+    }).then(async (res) => res.json())
+      .then((res) => {
+        setLogOut(false)
+        if (!res.success) throw new Error(res.data.msg);
+        toast.success(res.data, { autoClose: 2000 });
+        setUser(null)
+      }).catch((error) => {
+        setLogOut(false)
+        toast.error(error.message);
+      })
+  }, [logOut, setUser]);
+
+
+  return <div className="Auth" onClick={() => setLogOut(true)}>
     <div className="logout">
       <p>Logout</p>
       <FontAwesomeIcon icon={faSignOut} />
