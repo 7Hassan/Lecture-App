@@ -20,6 +20,7 @@ app.use(bodyParser.json());
 const corsOptions = {
   // origin: 'http://localhost:5173',
   origin: 'https://lecture-app-50d1c.web.app',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true
 };
 
