@@ -54,10 +54,13 @@ export const Login = ({ setUser }: { setUser: React.Dispatch<React.SetStateActio
         "Content-Type": "application/json",
       }
     })
-      .then((res) => res.json())
-      .then((data) => {
-        if (!data.success) throw new Error(data.msg);
-        setUser(data.data);
+      .then((res) => {
+        console.log('🚀 ~ res:', res.json())
+        return res.json()
+      })
+      .then((res) => {
+        if (!res.success) throw new Error(res.msg);
+        setUser(res.data);
         setLoading(false);
         navigate("/")
       }).catch((error) => {
