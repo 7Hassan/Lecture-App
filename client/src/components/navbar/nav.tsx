@@ -91,7 +91,6 @@ const Logout = ({ setUser }: { setUser: React.Dispatch<React.SetStateAction<User
         setUser(null)
       }).catch((error) => {
         setLogOut(false)
-        toast.error(error.message);
       })
   }, [logOut, setUser]);
 
