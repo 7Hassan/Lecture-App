@@ -32,7 +32,7 @@ app.use(xssClean())
 app.use(hpp())
 
 const corsOptions = {
-  origin: 'http://localhost:5173',
+  origin: 'https://lecture-app-50d1c.web.app',
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true,
 };
@@ -46,7 +46,7 @@ app.use(async (req, res, next) => {
 
 const limiter = limitReq({
   max: 200,
-  windowMs: 1000 * 60 * 60, 
+  windowMs: 1000 * 60 * 60,
   message: 'Too many requests, try again after one hour'
 })
 

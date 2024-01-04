@@ -3,7 +3,7 @@
   "version": "1.5.0",
   "description": "index side",
   "engines": {
-    "node": "18.x"
+    "node": "14.x"
   },
   "main": "index.js",
   "scripts": {
@@ -65,8 +65,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/7Hassan/Gold_Gym",
-    "bugs": "https://github.com/7Hassan/Gold_Gym/issues",
-    "homepage": "https://github.com/7Hassan/Gold_Gym#readme"
+    "url": "https://github.com/7Hassan/Lecture-App",
+    "bugs": "https://github.com/7Hassan/Lecture-App/issues",
+    "homepage": "https://github.com/7Hassan/Lecture-App#readme"
   }
 }
