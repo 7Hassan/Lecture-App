@@ -12,7 +12,7 @@ exports.cookieOptions = {
   httpOnly: true,
   // secure: process.env.NODE_ENV === 'production' ? true : false,
   secure: true,
-  // sameSite: 'None',
+  sameSite: 'None',
   // path: '/',
   // domain: "https://lecture-app-50d1c.web.app"
 };
