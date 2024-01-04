@@ -14,7 +14,7 @@ exports.cookieOptions = {
   secure: true,
   sameSite: 'None',
   path: '/',
-  domain: ".vercel.app"
+  domain: "https://lecture-app-coral.vercel.app"
 };
 
 exports.createJwtToken = (id) => jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRED })
