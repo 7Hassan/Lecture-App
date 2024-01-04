@@ -9,8 +9,8 @@ import { TimeClock } from '@mui/x-date-pickers/TimeClock';
 
 export const Loading = ({ type }: { type: string }) => {
   return <>
-    {type === "white" && <img src="loading-white.png" alt="loading" className="loading" />}
-    {type === "color" && <img src="loading.png" alt="loading" className="loading" />}
+    {type === "white" && <img src="https://firebasestorage.googleapis.com/v0/b/lecture-app-50d1c.appspot.com/o/loading-white.png?alt=media&token=16a18d86-e5d6-4cd6-9dc6-57d8bf2235db" alt="loading" className="loading" />}
+    {type === "color" && <img src="https://firebasestorage.googleapis.com/v0/b/lecture-app-50d1c.appspot.com/o/loading.png?alt=media&token=c865cd13-2b2e-4a3c-b8d7-549d742a88b5" alt="loading" className="loading" />}
   </>
 }
 
@@ -85,7 +85,7 @@ const Start = ({ clock, setClock, changeTime, start }: Start) => {
       <div className="AM-PM">
         <div className="am" ><span className={`text ${start.$H < 12 && 'clicked'}`}
           onClick={() => handleClickZone('am')}>AM</span> </div>
-          
+
         <div className="pm" > <span className={`text ${start.$H >= 12 && 'clicked'}`}
           onClick={() => handleClickZone('pm')}>PM</span> </div>
       </div>
@@ -100,7 +100,7 @@ const End = ({ clock, setClock, changeTime, end }: End) => {
 
   const handleClickZone = (zone: string) => {
     const obj = (zone === 'am') ? dayjs(addHours(end.$d, -12))
-    : dayjs(addHours(end.$d, 12));
+      : dayjs(addHours(end.$d, 12));
     changeTime(new Date(obj.$d));
     if (status === "end") setClock({ ...clock, time: obj })
   }

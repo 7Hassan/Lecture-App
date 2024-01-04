@@ -40,13 +40,13 @@ const Action = ({ lecId, setTables }: { lecId: string }) => {
   return <td className="actions">
     <div className="edit">
       <Link to={lecId}>
-        <img src="edit.png" alt="edit" />
+        <img src="https://firebasestorage.googleapis.com/v0/b/lecture-app-50d1c.appspot.com/o/edit.png?alt=media&token=6ecf0613-cd3a-4070-806f-8613958a2f4d" alt="edit" />
       </Link>
     </div>
     <div className="remove" onClick={() => setId(lecId)}>
       {
         !loading &&
-        <img src="remove.png" alt="remove" />
+        <img src="https://firebasestorage.googleapis.com/v0/b/lecture-app-50d1c.appspot.com/o/remove.png?alt=media&token=21bf1a61-6f6c-4182-9454-7f0f51beca41" alt="remove" />
       }
 
       {
@@ -96,7 +96,7 @@ export const Table = ({ table, isAuth, setTables }: { table: TableInterface | un
   return <div className="table">
     <div className="btns">
       <button className="export">
-        <img src="arrow.png" alt="arrow" />
+        <img src="https://firebasestorage.googleapis.com/v0/b/lecture-app-50d1c.appspot.com/o/arrow.png?alt=media&token=9f680cb3-722f-4b84-8bb7-27a4869a43b4" alt="arrow" />
         <p>
           Export
         </p>

@@ -67,7 +67,7 @@ export const Register = ({ setUser }: { setUser: React.Dispatch<React.SetStateAc
       <div className="header">
         <Link to="/">
           <div className="img">
-            <img src="https://scontent.fcai26-1.fna.fbcdn.net/v/t39.30808-1/348260965_943018837014070_430687469408114676_n.jpg?stp=cp0_dst-jpg_p80x80&_nc_cat=101&ccb=1-7&_nc_sid=596444&_nc_ohc=EIRgtM-qZvUAX-k9FRm&_nc_ht=scontent.fcai26-1.fna&oh=00_AfAwZklCaHuuga-4mHIrajIPVr-NwRI1CdgjOGwx46ghOg&oe=658F9256" alt="logo" />
+            <img src="https://firebasestorage.googleapis.com/v0/b/lecture-app-50d1c.appspot.com/o/portsaid.jpeg?alt=media&token=22a85153-3aa4-4383-b786-949b4dd3a8d7" alt="logo" />
           </div>
         </Link>
         <p className="welcome">Welcome in Our Community</p>
