@@ -6,6 +6,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { TimeClock } from '@mui/x-date-pickers/TimeClock';
 import { Helmet } from "react-helmet";
+import { LoadingColor, loading } from '../assets/images';
 
 
 export const Title = ({ title }: { title: string }) => <Helmet><title>{title}</title></Helmet>
@@ -13,8 +14,8 @@ export const Title = ({ title }: { title: string }) => <Helmet><title>{title}</t
 
 export const Loading = ({ type }: { type: string }) => {
   return <>
-    {type === "white" && <img src="https://firebasestorage.googleapis.com/v0/b/lecture-app-50d1c.appspot.com/o/loading-white.png?alt=media&token=16a18d86-e5d6-4cd6-9dc6-57d8bf2235db" alt="loading" className="loading" />}
-    {type === "color" && <img src="https://firebasestorage.googleapis.com/v0/b/lecture-app-50d1c.appspot.com/o/loading.png?alt=media&token=c865cd13-2b2e-4a3c-b8d7-549d742a88b5" alt="loading" className="loading" />}
+    {type === "white" && <img src={loading} alt="loading" className="loading" />}
+    {type === "color" && <img src={LoadingColor} alt="loading" className="loading" />}
   </>
 }
 

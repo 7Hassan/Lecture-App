@@ -5,7 +5,6 @@
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/vite.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -13,13 +12,65 @@
   <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
   <meta name="msapplication-TileColor" content="#a5dad9">
   <meta name="theme-color" content="#a5dad9">
-  
+  <style>
+    * {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      overflow-x: hidden;
+    }
+
+    .hello,
+    .loading {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      width: 100vw;
+    }
+
+    .hello video {
+      max-width: 500px;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
   <title>Home</title>
 </head>
 
 <body>
-  <div id="root"></div>
+  <div class="loading" id="loading">
+    <img src="/loading.svg" alt="">
+  </div>
+  <div class="hello hidden" id="bm">
+    <video autoplay muted
+      src="https://firebasestorage.googleapis.com/v0/b/lecture-app-50d1c.appspot.com/o/Screen%20Recording%202024-01-04%20at%206.03.07%E2%80%AFPM.mov?alt=media&token=1e9cf52a-3355-40bf-8f51-a376838f8268">
+    </video>
+  </div>
+  <div id="root" class="hidden"></div>
+
+
   <script type="module" src="/src/main.tsx"></script>
+  <script defer>
+    const root = document.getElementById('root');
+    const bm = document.getElementById('bm');
+    const loading = document.getElementById('loading');
+    window.addEventListener('load', () => {
+      loading.classList.add('hidden');
+      bm.classList.remove('hidden');
+      setTimeout(() => {
+        bm.classList.add('hidden');
+        root.classList.remove('hidden');
+      }, 2500)
+    });
+
+
+
+
+
+  </script>
 </body>
 
 </html>

@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react"
 import "./main.scss"
 import { User as UserInterface } from '../../utils/interfaces';
 import { grades } from '../../utils/variables';
+import { portSaid } from '../../assets/images';
 interface NavProps {
   user: UserInterface | null
   grade: string | null;
@@ -94,7 +95,7 @@ export const Nav: React.FC<NavProps> = ({ grade, user, setGrade, setUser }) => {
         setGrade={setGrade} gradeRef={gradeRef} />
       <div className="container-st">
         <div className="logo">
-          <img src="https://firebasestorage.googleapis.com/v0/b/lecture-app-50d1c.appspot.com/o/portsaid-removebg.png?alt=media&token=5e5707e3-4aa3-44f8-8dfc-b4d062b87f1c" alt="logo" />
+          <img src={portSaid} alt="logo" />
         </div>
         <div className="content" >
           <div className="grade-hd" ref={gradeRef}>

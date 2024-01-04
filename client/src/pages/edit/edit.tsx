@@ -9,6 +9,7 @@ import { Clock } from "../../utils/components";
 import { isBefore, isSameHour, isSameMinute } from "date-fns";
 import "./main.scss";
 import { Lecture } from "../../utils/interfaces";
+import { portSaid } from "../../assets/images";
 
 interface Form {
   lecture: Lecture,
@@ -111,7 +112,7 @@ export const Edit = () => {
       <div className="header">
         <Link to="/">
           <div className="img">
-            <img src="https://firebasestorage.googleapis.com/v0/b/lecture-app-50d1c.appspot.com/o/portsaid-removebg.png?alt=media&token=5e5707e3-4aa3-44f8-8dfc-b4d062b87f1c" alt="logo" />
+            <img src={portSaid} alt="logo" />
           </div>
         </Link>
         <p className="welcome">Edit Lecture</p>

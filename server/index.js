@@ -7,8 +7,7 @@ process.on('uncaughtException', (err) => {
   process.exit(1)
 })
 
-// const DBLink = process.env.DATA_BASE_URL.replace('<DATABASENAME>', process.env.DATA_BASE_NAME).replace('<PASSWORD>', process.env.DATA_BASE_PASSWORD)
-const DBLink = "mongodb://localhost:27017/eventsDB"
+const DBLink = process.env.DATA_BASE_URL.replace('<DATABASENAME>', process.env.DATA_BASE_NAME).replace('<PASSWORD>', process.env.DATA_BASE_PASSWORD)
 const port = process.env.PORT || 8000
 mongoose.set('strictQuery', false);
 mongoose.connect(DBLink).then(() => console.log('✅ connect with DataBase'))

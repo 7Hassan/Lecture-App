@@ -9,6 +9,7 @@ import { url } from '../../utils/variables';
 import { Loading, Title } from '../../utils/components';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import { portSaid } from '../../assets/images';
 
 
 const Password = ({ password, handleChange }: { password: string, handleChange: (name: string, value: string) => void }) => {
@@ -71,7 +72,7 @@ export const Login = ({ setUser }: { setUser: React.Dispatch<React.SetStateActio
       <div className="header">
         <Link to="/">
           <div className="img">
-            <img src="https://firebasestorage.googleapis.com/v0/b/lecture-app-50d1c.appspot.com/o/portsaid-removebg.png?alt=media&token=5e5707e3-4aa3-44f8-8dfc-b4d062b87f1c" alt="logo" />
+            <img src={portSaid} alt="logo" />
           </div>
         </Link>
         <p className="welcome">Welcome back</p>

@@ -9,6 +9,7 @@ import { User } from '../../utils/interfaces';
 import { toast } from 'react-toastify';
 import { url } from '../../utils/variables';
 import { Loading, Title } from '../../utils/components';
+import { portSaid } from '../../assets/images';
 const Password = ({ password, handleChange }: { password: string, handleChange: (name: string, value: string) => void }) => {
   const [passShow, setPassShow] = useState(false)
 
@@ -68,7 +69,7 @@ export const Register = ({ setUser }: { setUser: React.Dispatch<React.SetStateAc
       <div className="header">
         <Link to="/">
           <div className="img">
-            <img src="https://firebasestorage.googleapis.com/v0/b/lecture-app-50d1c.appspot.com/o/portsaid-removebg.png?alt=media&token=5e5707e3-4aa3-44f8-8dfc-b4d062b87f1c" alt="logo" />
+            <img src={portSaid} alt="logo" />
           </div>
         </Link>
         <p className="welcome">Welcome in Our Community</p>

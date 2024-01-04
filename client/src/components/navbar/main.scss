@@ -20,7 +20,7 @@
     box-shadow: $box-sh;
     cursor: pointer;
     overflow: hidden;
-    transition: .5s;
+    transition: .3s;
 
     &.hidden {
       top: calc(100% - 260px);
