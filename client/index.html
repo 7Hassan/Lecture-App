@@ -23,6 +23,13 @@
       height: 100vh;
       width: 100vw;
     }
+    .over{
+      background-color: transparent;
+      position: absolute;
+      height: 100vh;
+      width: 100vw;
+      z-index: 2;
+    }
 
     .hello video {
       max-width: 500px;
@@ -40,6 +47,7 @@
     <img src="/loading.svg" alt="">
   </div>
   <div class="hello hide" id="bm">
+    <div class="over"></div>
     <video autoplay muted
       src="https://firebasestorage.googleapis.com/v0/b/lecture-app-50d1c.appspot.com/o/Screen%20Recording%202024-01-04%20at%206.03.07%E2%80%AFPM.mov?alt=media&token=1e9cf52a-3355-40bf-8f51-a376838f8268">
     </video>
@@ -58,7 +66,7 @@
       setTimeout(() => {
         bm.classList.add('hide');
         root.classList.remove('hide');
-      }, 2500)
+      }, 3000)
     });
 
 
