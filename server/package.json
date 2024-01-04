@@ -3,7 +3,7 @@
   "version": "1.5.0",
   "description": "index side",
   "engines": {
-    "node": "14.x"
+    "node": "18.x"
   },
   "main": "index.js",
   "scripts": {
