@@ -20,7 +20,12 @@ const app = express();
 app.use(express.json())
 app.use(bodyParser.json());
 
-app.use(cors());
+const corsOptions = {
+  origin: 'https://lecture-app-50d1c.web.app',
+  credentials: true 
+};
+
+app.use(cors(corsOptions));
 app.use(mongoSanitize())
 app.use(xssClean())
 app.use(hpp())
