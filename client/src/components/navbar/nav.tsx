@@ -78,7 +78,7 @@ const Logout = ({ setUser }: { setUser: React.Dispatch<React.SetStateAction<User
 
   useEffect(() => {
     if (!logOut) return;
-    fetch(`${url}/auth/logout`, {
+    fetch(`${url}/api/logout`, {
       method: 'GET',
       credentials: 'include',
       headers: { "Content-Type": "application/json" }

@@ -18,7 +18,6 @@ app.use(express.json())
 app.use(bodyParser.json());
 
 const corsOptions = {
-  // origin: 'http://localhost:5173',
   origin: 'https://lecture-app-psu.vercel.app',
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true
@@ -29,6 +28,14 @@ app.use(mongoSanitize())
 app.use(xssClean())
 app.use(hpp())
 app.use(cookieParser());
+
+app.use(session({
+  key: 'client.side',
+  secret: process.env.SESSION_SECRET,
+  saveUninitialized: true,
+  resave: true,
+  cookie: { maxAge: 30 * 24 * 60 * 60 * 100, sameSite: 'None' },
+}));
 
 app.use(async (req, res, next) => {
   res.locals.messages = require('express-messages')(req, res);
