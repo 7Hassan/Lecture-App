@@ -19,7 +19,7 @@ app.use(bodyParser.json());
 
 const corsOptions = {
   // origin: 'http://localhost:5173',
-  origin: 'https://lecture-app-50d1c.web.app',
+  origin: 'https://lecture-app-psu.vercel.app',
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true
 };
@@ -35,7 +35,7 @@ app.use(session({
   secret: process.env.SESSION_SECRET,
   saveUninitialized: true,
   resave: true,
-  cookie: { maxAge: 30 * 24 * 60 * 60 * 100, sameSite: "None" },
+  cookie: { maxAge: 30 * 24 * 60 * 60 * 100 },
 }));
 
 app.use(async (req, res, next) => {
