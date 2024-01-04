@@ -9,6 +9,7 @@ const mongoSanitize = require('express-mongo-sanitize')
 const xssClean = require('xss-clean')
 const hpp = require('hpp')
 const cors = require('cors')
+const session = require('express-session');
 
 
 dotenv.config({ path: './.env' });
