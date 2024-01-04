@@ -53,11 +53,7 @@ export const Login = ({ setUser }: { setUser: React.Dispatch<React.SetStateActio
       headers: {
         "Content-Type": "application/json",
       }
-    })
-      .then((res) => {
-        console.log('🚀 ~ res:', res.json())
-        return res.json()
-      })
+    }).then((res) => res.json())
       .then((res) => {
         if (!res.success) throw new Error(res.msg);
         setUser(res.data);
