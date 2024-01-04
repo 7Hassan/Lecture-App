@@ -84,6 +84,7 @@ const Logout = ({ setUser }: { setUser: React.Dispatch<React.SetStateAction<User
       headers: { "Content-Type": "application/json" }
     }).then(async (res) => res.json())
       .then((res) => {
+        console.log('🚀 ~ res:', res)
         setLogOut(false)
         if (!res.success) throw new Error(res.data.msg);
         toast.success(res.data, { autoClose: 2000 });

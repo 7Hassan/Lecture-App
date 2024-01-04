@@ -12,6 +12,7 @@ exports.cookieOptions = {
   httpOnly: true,
   secure: true,
   sameSite: 'None',
+  domain: ".vercel.app"
 };
 
 exports.createJwtToken = (id) => jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRED })
