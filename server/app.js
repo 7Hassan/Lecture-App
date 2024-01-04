@@ -30,14 +30,6 @@ app.use(xssClean())
 app.use(hpp())
 app.use(cookieParser());
 
-app.use(session({
-  key: 'client.side',
-  secret: process.env.SESSION_SECRET,
-  saveUninitialized: true,
-  resave: true,
-  cookie: { maxAge: 30 * 24 * 60 * 60 * 100, sameSite: 'None' },
-}));
-
 app.use(async (req, res, next) => {
   res.locals.messages = require('express-messages')(req, res);
   next();
