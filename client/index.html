@@ -15,15 +15,19 @@
   <meta name="theme-color" content="#a5dad9">
   <style>
     .hello,
-    .load{
+    .load {
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       height: 100vh;
       width: 100vw;
+      max-height: 100vh;
+      min-width: 100vw;
+      overflow: hidden;
     }
-    .over{
+
+    .over {
       background-color: transparent;
       position: absolute;
       height: 100vh;
@@ -48,8 +52,11 @@
   </div>
   <div class="hello hide" id="bm">
     <div class="over"></div>
-    <video autoplay muted
-      src="https://firebasestorage.googleapis.com/v0/b/lecture-app-50d1c.appspot.com/o/Screen%20Recording%202024-01-04%20at%206.03.07%E2%80%AFPM.mov?alt=media&token=1e9cf52a-3355-40bf-8f51-a376838f8268">
+    <video autoplay muted loop playsinline disablePictureInPicture >
+      <source
+        src="https://firebasestorage.googleapis.com/v0/b/lecture-app-50d1c.appspot.com/o/Screen%20Recording%202024-01-04%20at%206.03.07%E2%80%AFPM.mov?alt=media&token=1e9cf52a-3355-40bf-8f51-a376838f8268"
+        type="video/mp4">
+      Your browser does not support the video.
     </video>
   </div>
   <div id="root" class="hide"></div>
