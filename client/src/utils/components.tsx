@@ -5,6 +5,10 @@ import { format, addHours } from 'date-fns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { TimeClock } from '@mui/x-date-pickers/TimeClock';
+import { Helmet } from "react-helmet";
+
+
+export const Title = ({ title }: { title: string }) => <Helmet><title>{title}</title></Helmet>
 
 
 export const Loading = ({ type }: { type: string }) => {

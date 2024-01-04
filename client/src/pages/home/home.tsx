@@ -7,6 +7,7 @@ import { url } from "../../utils/variables";
 import { toast } from "react-toastify";
 import { Tables, User } from "../../utils/interfaces";
 import { Table } from "../../components/table/table";
+import { Title } from "../../utils/components";
 
 interface Home {
   user: User | null;
@@ -41,7 +42,8 @@ export const Home = ({ user, setUser, isAuth, grade, setGrade }: Home) => {
   }, [])
 
   return <>
-    <Nav grade={grade} setGrade={setGrade} user={user} setUser={setUser}/>
+    <Title title='Home' />
+    <Nav grade={grade} setGrade={setGrade} user={user} setUser={setUser} />
     <div className="contain">
       <div className="content-container">
         <div className="home">

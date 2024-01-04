@@ -94,7 +94,7 @@ export const Nav: React.FC<NavProps> = ({ grade, user, setGrade, setUser }) => {
         setGrade={setGrade} gradeRef={gradeRef} />
       <div className="container-st">
         <div className="logo">
-          <img src="https://firebasestorage.googleapis.com/v0/b/lecture-app-50d1c.appspot.com/o/portsaid.jpeg?alt=media&token=22a85153-3aa4-4383-b786-949b4dd3a8d7" alt="logo" />
+          <img src="https://firebasestorage.googleapis.com/v0/b/lecture-app-50d1c.appspot.com/o/portsaid-removebg.png?alt=media&token=5e5707e3-4aa3-44f8-8dfc-b4d062b87f1c" alt="logo" />
         </div>
         <div className="content" >
           <div className="grade-hd" ref={gradeRef}>

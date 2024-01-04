@@ -6,9 +6,10 @@ import { Link } from "react-router-dom"
 import "./main.scss";
 import { User } from '../../utils/interfaces';
 import { url } from '../../utils/variables';
-import { Loading } from '../../utils/components';
+import { Loading, Title } from '../../utils/components';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+
 
 const Password = ({ password, handleChange }: { password: string, handleChange: (name: string, value: string) => void }) => {
   const [passShow, setPassShow] = useState(false)
@@ -65,11 +66,12 @@ export const Login = ({ setUser }: { setUser: React.Dispatch<React.SetStateActio
   }, [form, loading, setUser, isDisabledForm, navigate]);
 
   return <div className="auth">
+    <Title title='Login' />
     <div className="container-st">
       <div className="header">
         <Link to="/">
           <div className="img">
-            <img src="https://firebasestorage.googleapis.com/v0/b/lecture-app-50d1c.appspot.com/o/portsaid.jpeg?alt=media&token=22a85153-3aa4-4383-b786-949b4dd3a8d7" alt="logo" />
+            <img src="https://firebasestorage.googleapis.com/v0/b/lecture-app-50d1c.appspot.com/o/portsaid-removebg.png?alt=media&token=5e5707e3-4aa3-44f8-8dfc-b4d062b87f1c" alt="logo" />
           </div>
         </Link>
         <p className="welcome">Welcome back</p>

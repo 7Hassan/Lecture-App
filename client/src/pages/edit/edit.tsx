@@ -4,7 +4,7 @@ import { Link, useNavigate, useParams } from "react-router-dom"
 import { useState, useMemo, useEffect } from "react"
 import { toast } from 'react-toastify';
 import { url } from '../../utils/variables';
-import { Loading } from '../../utils/components';
+import { Loading, Title } from '../../utils/components';
 import { Clock } from "../../utils/components";
 import { isBefore, isSameHour, isSameMinute } from "date-fns";
 import "./main.scss";
@@ -106,11 +106,12 @@ export const Edit = () => {
   }, [param.id]);
 
   return <div className="auth">
+    <Title title='Edit lecture' />
     <div className="container-st">
       <div className="header">
         <Link to="/">
           <div className="img">
-            <img src="https://firebasestorage.googleapis.com/v0/b/lecture-app-50d1c.appspot.com/o/portsaid.jpeg?alt=media&token=22a85153-3aa4-4383-b786-949b4dd3a8d7" alt="logo" />
+            <img src="https://firebasestorage.googleapis.com/v0/b/lecture-app-50d1c.appspot.com/o/portsaid-removebg.png?alt=media&token=5e5707e3-4aa3-44f8-8dfc-b4d062b87f1c" alt="logo" />
           </div>
         </Link>
         <p className="welcome">Edit Lecture</p>
