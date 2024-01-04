@@ -148,6 +148,6 @@ exports.edit = catchError(async (req, res, next) => {
 exports.logOut = catchError(async (req, res, next) => {
   const user = req.user
   if (!user) return next(new AppError('You aren\'t register', 401))
-  res.cookie('jwt', 'out', { ...helper.cookieOptions, expires: new Date(Date.now() + 1_000_0) })
-  res.status(200).json({ susses: true, data: "Log out" })
+  res.cookie('jwt', 'out', helper.cookieOptions).status(201)
+    .json({ susses: true, data: "Log out" })
 })
