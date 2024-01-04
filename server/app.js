@@ -34,7 +34,7 @@ app.use(session({
   secret: process.env.SESSION_SECRET,
   saveUninitialized: true,
   resave: true,
-  cookie: { maxAge: 30 * 24 * 60 * 60 * 100, sameSite: 'None' },
+  cookie: { maxAge: 30 * 24 * 60 * 60 * 100 },
 }));
 
 app.use(async (req, res, next) => {
