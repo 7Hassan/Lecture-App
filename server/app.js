@@ -29,7 +29,7 @@ app.use(cors(corsOptions));
 app.use(mongoSanitize())
 app.use(xssClean())
 app.use(hpp())
-app.use(cookieParser()); //? to access a cookie requests
+app.use(cookieParser()); 
 
 
 
