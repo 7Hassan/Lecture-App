@@ -19,7 +19,7 @@ dotenv.config({ path: './.env' });
 const app = express();
 app.use(cookieParser());
 app.use(express.json())
-app.set('trust proxy', 1)
+// app.set('trust proxy', 1)
 app.use(morgan('tiny'))
 app.use(compression())
 app.use(helmet())
@@ -37,7 +37,8 @@ const corsOptions = {
   credentials: true,
 };
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
+app.use(cors());
 
 app.use(async (req, res, next) => {
   res.locals.messages = require('express-messages')(req, res);
