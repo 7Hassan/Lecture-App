@@ -17,28 +17,16 @@ const helmet = require('helmet');
 
 dotenv.config({ path: './.env' });
 const app = express();
-app.use(cookieParser());
 app.use(express.json())
-// app.set('trust proxy', 1)
-app.use(morgan('tiny'))
-app.use(compression())
-app.use(helmet())
-app.use(helmet.crossOriginResourcePolicy({ policy: 'cross-origin' }))
-app.use(morgan('common'))
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
+
+app.use(cors());
 app.use(mongoSanitize())
 app.use(xssClean())
 app.use(hpp())
+app.use(cookieParser()); //? to access a cookie requests
 
-const corsOptions = {
-  origin: 'https://lecture-app-50d1c.web.app',
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  credentials: true,
-};
 
-// app.use(cors(corsOptions));
-app.use(cors());
 
 app.use(async (req, res, next) => {
   res.locals.messages = require('express-messages')(req, res);
