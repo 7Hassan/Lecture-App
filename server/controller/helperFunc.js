@@ -8,11 +8,10 @@ const sharp = require('sharp')
 
 
 exports.cookieOptions = {
-  maxAge: 30 * 24 * 60 * 60 * 100,
+  maxAge: 30 * 24 * 60 * 60 * 1000,
   httpOnly: true,
   secure: true,
   sameSite: 'none',
-  domain: 'https://lecture-app-psu.vercel.app'
 };
 
 exports.createJwtToken = (id) => jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRED })
