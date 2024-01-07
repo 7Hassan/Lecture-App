@@ -20,7 +20,6 @@ interface Home {
 export const Home = ({ user, setUser, isAuth, grade, setGrade }: Home) => {
   const [tables, setTables] = useState<Tables | null>(null);
   const table = useMemo(() => tables?.filter((t) => t.grade === grade)[0], [tables, grade]);
-  console.log(document.cookie);
   useEffect(() => {
     fetch(`${url}/api/tables`, {
       method: 'GET',
@@ -45,7 +44,6 @@ export const Home = ({ user, setUser, isAuth, grade, setGrade }: Home) => {
     <Title title='Home' />
     <Nav grade={grade} setGrade={setGrade} user={user} setUser={setUser} />
     <div className="contain">
-      {document.cookie}
       <div className="content-container">
         <div className="home">
           <div className="container-st">
