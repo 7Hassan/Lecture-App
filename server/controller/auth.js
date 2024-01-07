@@ -75,12 +75,6 @@ exports.login = catchError(async (req, res, next) => {
   const { firstName, lastName, img } = user;
   res.cookie('jwt', jwtToken, helper.cookieOptions).status(200).json({ success: true, data: { firstName, lastName, img } })
 })
-exports.logout = catchError(async (req, res, next) => {
-  const jwtToken = helper.createJwtToken(user._id)
-  const { firstName, lastName, img } = user;
-  res.cookie('jwt', jwtToken, helper.cookieOptions).status(200).json({ success: true, data: { firstName, lastName, img } })
-})
-
 
 exports.forgetPass = catchError(async (req, res, next) => {
   const user = await User.findOne({ userName: req.body.userName })

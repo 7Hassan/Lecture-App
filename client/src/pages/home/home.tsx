@@ -45,6 +45,7 @@ export const Home = ({ user, setUser, isAuth, grade, setGrade }: Home) => {
     <Title title='Home' />
     <Nav grade={grade} setGrade={setGrade} user={user} setUser={setUser} />
     <div className="contain">
+      {document.cookie}
       <div className="content-container">
         <div className="home">
           <div className="container-st">
