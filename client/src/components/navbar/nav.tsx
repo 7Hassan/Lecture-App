@@ -7,6 +7,7 @@ import { User as UserInterface } from '../../utils/interfaces';
 import { grades, url } from '../../utils/variables';
 import { portSaid } from '../../assets/images';
 import { toast } from 'react-toastify';
+import { Loading } from '../../utils/components';
 interface NavProps {
   user: UserInterface | null
   grade: string | null;
@@ -97,8 +98,15 @@ const Logout = ({ setUser }: { setUser: React.Dispatch<React.SetStateAction<User
 
   return <div className="Auth" onClick={() => setLogOut(true)}>
     <div className="logout">
-      <p>Logout</p>
-      <FontAwesomeIcon icon={faSignOut} />
+      {!logOut &&
+        <>
+          <p>Logout</p>
+          <FontAwesomeIcon icon={faSignOut} />
+        </>
+      }
+      {logOut &&
+        <Loading type="color" />
+      }
     </div>
   </div>
 }
