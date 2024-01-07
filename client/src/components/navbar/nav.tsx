@@ -105,7 +105,7 @@ const Logout = ({ setUser }: { setUser: React.Dispatch<React.SetStateAction<User
         </>
       }
       {logOut &&
-        <Loading type="color" />
+        <Loading type="red" />
       }
     </div>
   </div>

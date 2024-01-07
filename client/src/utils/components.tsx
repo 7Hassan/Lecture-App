@@ -6,7 +6,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { TimeClock } from '@mui/x-date-pickers/TimeClock';
 import { Helmet } from "react-helmet";
-import { LoadingColor, loading } from '../assets/images';
+import { LoadingColor, loading, loadingRed } from '../assets/images';
 
 
 export const Title = ({ title }: { title: string }) => <Helmet><title>{title}</title></Helmet>
@@ -16,6 +16,7 @@ export const Loading = ({ type }: { type: string }) => {
   return <>
     {type === "white" && <img src={loading} alt="loading" className="loading" />}
     {type === "color" && <img src={LoadingColor} alt="loading" className="loading" />}
+    {type === "red" && <img src={loadingRed} alt="loading" className="loading" />}
   </>
 }
 
