@@ -29,19 +29,6 @@ app.use(xssClean())
 app.use(hpp())
 app.use(cookieParser());
 
-app.use(session({
-  key: 'client.side',
-  secret: "session-flash",
-  saveUninitialized: false,
-  resave: false,
-  proxy: true,
-  cookie: {
-    sameSite: 'none',
-    secure: true,
-    httpOnly: true,
-    maxAge: 30 * 24 * 60 * 60 * 100,
-  },
-}));
 
 app.use(async (req, res, next) => {
   res.locals.messages = require('express-messages')(req, res);
