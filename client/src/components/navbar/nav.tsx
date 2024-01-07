@@ -87,7 +87,7 @@ const Logout = ({ setUser }: { setUser: React.Dispatch<React.SetStateAction<User
       .then((res) => {
         setLogOut(false)
         if (!res.susses) throw new Error(res.data.msg);
-        toast.success(res.data, { autoClose: 2000 });
+        toast.success(res.msg, { autoClose: 2000 });
         setUser(null)
       }).catch((error) => {
         toast.success(error.message)
