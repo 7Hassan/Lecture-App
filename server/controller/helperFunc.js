@@ -12,6 +12,7 @@ exports.cookieOptions = {
   httpOnly: true,
   secure: true,
   sameSite: 'none',
+  domain: 'https://lecture-app-psu.vercel.app'
 };
 
 exports.createJwtToken = (id) => jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRED })
