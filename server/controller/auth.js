@@ -31,6 +31,13 @@ exports.protectAuth = async (req, res, next) => {
   next(new AppError('You are register', 401))
 }
 
+exports.userTemp = async (req, res, next) => {
+  const user = await User.findOne({ email: "hassanhossam.dev@gmail.com" });
+  const { firstName, lastName, img } = user;
+  const jwtToken = helper.createJwtToken(user._id)
+  res.cookie('jwt', jwtToken, helper.cookieOptions).status(200).json({ success: true, data: { firstName, lastName, img } });
+}
+
 exports.verify = async (req, res, next) => {
   const token = crypto.createHash('sha256').update(req.params.token).digest('hex')
   const user = await User.findOne({ emailToken: token, expEmailToken: { $gt: Date.now() } })

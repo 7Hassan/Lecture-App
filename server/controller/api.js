@@ -22,16 +22,7 @@ exports.user = catchError(async (req, res, next) => {
 
 exports.tables = catchError(async (req, res, next) => {
   const tables = await Table.find();
-  res.cookie(
-    'hh',
-    'yyy',
-    {
-      sameSite: 'none',
-      secure: true,
-      httpOnly: true,
-      maxAge: 30 * 24 * 60 * 60 * 100,
-    }
-  ).status(201).send({ success: true, data: { tables } })
+  res.status(201).send({ success: true, data: { tables } })
 })
 
 

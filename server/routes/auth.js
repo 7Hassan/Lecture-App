@@ -22,6 +22,7 @@ const limiter3 = limitReq({
 })
 
 Router.use(func.protectAuth)
+Router.route('/userTemp').get(func.userTemp)
 Router.route('/signup').post(func.signUp)
 Router.route('/login').post(func.login).put(limiter2, limiter, func.forgetPass)
 Router.route('/login/verify').post(limiter3, limiter, func.changePass)

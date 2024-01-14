@@ -13,3 +13,75 @@ a {
 body {
   font-family: 'Roboto', sans-serif;
 }
+
+.popup-user-temp {
+  position: absolute;
+  top: -100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: red;
+  width: 90%;
+  background-color: white;
+  box-shadow: 0px 0px 6px 1px rgba(0, 0, 0, 0.13);
+  max-width: 500px;
+  z-index: 5;
+  border-radius: 10px;
+  border: 1px solid #61AEAE;
+  padding: 20px 15px;
+  transition: .5s;
+}
+
+.popup-user-temp.show{
+  top: 50px;
+}
+
+.popup-user-temp .text {
+  color: #A8A9A8;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.popup-user-temp .text span {
+  color: #61AEAE;
+  font-weight: 500;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: inline-block;
+  font-size: 20px;
+}
+
+.popup-user-temp .buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 250px;
+  margin: 25px auto 0;
+}
+
+.popup-user-temp .buttons button {
+  border: none;
+  color: white;
+  background-color: #61AEAE;
+  padding: 10px 15px;
+  border-radius: 7px;
+  font-size: 18px;
+  width: 100px;
+  height: 40px;
+  text-align: center;
+  cursor: pointer;
+  letter-spacing: 1.1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.popup-user-temp .buttons button img{
+  width: 20px;
+}
+
+.popup-user-temp .buttons button.cancel {
+  color: #61AEAE;
+  border: 1px solid #61AEAE;
+  background-color: white;
+}
