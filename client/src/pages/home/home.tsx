@@ -62,7 +62,7 @@ const PopUser = ({ isAuth, setUser }: { isAuth: boolean }) => {
 
 
   useEffect(() => {
-    const timeoutId = setTimeout(() => { !isAuth && !cookie && setPopUp(true); }, 1000);
+    const timeoutId = setTimeout(() => { !isAuth && !cookie && setPopUp(true); }, 10000);
     return () => { clearTimeout(timeoutId) };
   }, [cookie, isAuth]);
 
