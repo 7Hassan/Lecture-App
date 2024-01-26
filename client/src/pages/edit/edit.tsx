@@ -3,7 +3,7 @@
 import { Link, useNavigate, useParams } from "react-router-dom"
 import { useState, useMemo, useEffect } from "react"
 import { toast } from 'react-toastify';
-import { url } from '../../utils/variables';
+import { days, grades, url } from '../../utils/variables';
 import { Loading, Title } from '../../utils/components';
 import { Clock } from "../../utils/components";
 import { isBefore, isSameHour, isSameMinute } from "date-fns";
@@ -19,7 +19,7 @@ interface Form {
 export const Form = ({ lecture, setLecture }: Form) => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate()
-  const { name, location, doctor } = lecture;
+  const { name, location, doctor, grade, day } = lecture;
   const start = useMemo(() => new Date(lecture.start), [lecture.start])
   const end = useMemo(() => new Date(lecture.end), [lecture.end])
 
@@ -70,6 +70,29 @@ export const Form = ({ lecture, setLecture }: Form) => {
       <input type="text" placeholder='Doctor' className="input-field" name="doctor"
         value={doctor} onChange={e => handleChange(e.target.name, e.target.value)} />
     </div>
+
+    <div className="input">
+      <select id="selector" value={grade} className="input-field" name="grade"
+        onChange={e => handleChange(e.target.name, e.target.value)} >
+        {
+          grades.map((grade) => {
+            return <option key={grade} value={grade}>{grade}</option>
+          })
+        }
+      </select>
+    </div>
+
+    <div className="input">
+      <select id="selector" value={day} className="input-field" name="day"
+        onChange={e => handleChange(e.target.name, e.target.value)} >
+        {
+          days.map((day) => {
+            return <option key={day} value={day}>{day}</option>
+          })
+        }
+      </select>
+    </div>
+
     <div className="input">
       <Clock evTime={{ start, end }}
         setEvTime={({ start, end }: { start: Date, end: Date }) =>

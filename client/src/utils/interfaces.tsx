@@ -2,6 +2,8 @@
 export interface Lecture {
   name: string;
   location: string;
+  grade: string;
+  day: string;
   doctor: string;
   start: string;
   end: string;

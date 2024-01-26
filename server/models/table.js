@@ -21,6 +21,12 @@ const lecture = {
     required: [true, 'Day is required'],
     enum: ['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
   },
+  grade: {
+    type: String,
+    required: [true, 'Grade is required'],
+    enum: ["first", "second", "third", "fourth"],
+    unique: true,
+  },
   doctor: {
     type: String,
     required: [true, 'Doctor is required'],

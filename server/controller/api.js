@@ -38,7 +38,7 @@ exports.add = catchError(async (req, res, next) => {
   if (conflict) return next(new AppError('Time is busy', 401))
 
   table[day].push({
-    name, doctor, location, day,
+    name, doctor, location, day, grade,
     start: new Date(start),
     end: new Date(end)
   })
@@ -113,7 +113,20 @@ exports.getLec = catchError(async (req, res, next) => {
 
 
 exports.edit = catchError(async (req, res, next) => {
-  const { name, doctor, location, start, end, day, _id } = req.body;
+  const { day, grade, name, doctor, location, start, end, _id } = req.body;
+  const table = await Table.findOne({ grade });
+  if (!table) return next(new AppError('Incorrect Grade', 401))
+  const lectures = table[day]
+  if (!lectures) return next(new AppError('Incorrect Date', 401))
+  const updateLectures = lectures.filter(lec => lec.id !== _id);
+  const conflict = helper.conflictTime(new Date(start), new Date(end), updateLectures)
+  if (conflict) return next(new AppError('Time is busy', 401))
+
+  const lecture = {
+    name, doctor, location, day, grade,
+    start: new Date(start),
+    end: new Date(end), _id
+  }
   const filter = {
     $or: [
       { 'Saturday._id': _id },
@@ -125,20 +138,24 @@ exports.edit = catchError(async (req, res, next) => {
       { 'Friday._id': _id }
     ]
   };
+
   const update = {
-    $set: {
-      [day]: { _id, name, doctor, location, start, end, day },
+    $pull: {
+      Saturday: { _id },
+      Sunday: { _id },
+      Monday: { _id },
+      Tuesday: { _id },
+      Wednesday: { _id },
+      Thursday: { _id },
+      Friday: { _id }
     }
   };
-
-
-
-  const options = { new: true };
-
-  const updatedLecture = await Table.findOneAndUpdate(filter, update, options);
-  if (!updatedLecture) return next(new AppError('Error', 401))
-  const tables = await Table.find();
-  res.status(201).send({ success: true, data: { updatedLecture } })
+  const options = { new: true, multi: true };
+  const updatedTable = await Table.findOneAndUpdate(filter, update, options);
+  if (!updatedTable) return next(new AppError('Error', 401))
+  table[day].push(lecture)
+  await table.save()
+  res.status(201).send({ success: true, data: { lecture } })
 })
 
 
@@ -148,6 +165,6 @@ exports.edit = catchError(async (req, res, next) => {
 exports.logOut = catchError(async (req, res, next) => {
   const user = req.user
   if (!user) return next(new AppError('You aren\'t register', 401))
-  res.cookie('jwt', 'out', helper.cookieOptions).status(201)
+  res.cookie('popUp', 'none', helper.cookieOptions).status(201)
     .json({ susses: true, msg: "Log out" })
 })
