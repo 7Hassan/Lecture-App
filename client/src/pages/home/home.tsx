@@ -113,14 +113,14 @@ export const Home = ({ user, setUser, isAuth, grade, setGrade }: Home) => {
 
   return <>
     <Title title='Home' />
-    <Nav grade={grade} setGrade={setGrade} user={user} setUser={setUser} />
+    <Nav grade={grade} setGrade={setGrade} user={user} setUser={setUser} setCookies={setCookies}/>
     <PopUser isAuth={isAuth} setUser={setUser} />
     <div className="contain">
       <div className="content-container">
         <div className="home">
           <div className="container-st">
             <UpcomingEvents table={table} />
-            <Table table={table} isAuth={isAuth} setTables={setTables} />
+            <Table table={table} isAuth={isAuth} setTables={setTables}/>
           </div>
         </div>
       </div>

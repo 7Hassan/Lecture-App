@@ -24,10 +24,6 @@ exports.tables = catchError(async (req, res, next) => {
   const tables = await Table.find();
   res.status(201).send({ success: true, data: { tables } })
 })
-
-
-
-
 exports.add = catchError(async (req, res, next) => {
   const { day, grade, name, doctor, location, start, end } = req.body;
   const table = await Table.findOne({ grade });

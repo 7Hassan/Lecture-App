@@ -74,7 +74,7 @@ const Grade: React.FC<GradeProps> = ({ hidden, setHidden, grade, setGrade, grade
 }
 
 
-const Logout = ({ setUser }: { setUser: React.Dispatch<React.SetStateAction<UserInterface | null>> }) => {
+const Logout = ({ setUser ,setCookies}: { setUser: React.Dispatch<React.SetStateAction<UserInterface | null>> }) => {
   const [logOut, setLogOut] = useState(false);
 
   useEffect(() => {
@@ -87,6 +87,7 @@ const Logout = ({ setUser }: { setUser: React.Dispatch<React.SetStateAction<User
       .then((res) => {
         setLogOut(false)
         if (!res.susses) throw new Error(res.data.msg);
+        setCookies();
         toast.success(res.msg, { autoClose: 2000 });
         setUser(null)
       }).catch((error) => {
@@ -111,7 +112,7 @@ const Logout = ({ setUser }: { setUser: React.Dispatch<React.SetStateAction<User
   </div>
 }
 
-export const Nav: React.FC<NavProps> = ({ grade, user, setGrade, setUser }) => {
+export const Nav: React.FC<NavProps> = ({ grade, user, setGrade, setUser ,setCookies}) => {
   const [gradeScroll, setGradeScroll] = useState<boolean>(true);
   const gradeRef = useRef()
   return <>
@@ -127,7 +128,7 @@ export const Nav: React.FC<NavProps> = ({ grade, user, setGrade, setUser }) => {
             <p>{grade}</p>
             <FontAwesomeIcon icon={faChevronDown} />
           </div>
-          {user && <Logout setUser={setUser} />}
+          {user && <Logout setUser={setUser} setCookies={setCookies}/>}
           {!user && <Auth />}
         </div>
       </div>
