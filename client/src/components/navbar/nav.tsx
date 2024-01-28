@@ -86,7 +86,7 @@ const Logout = ({ setUser ,setCookies}) => {
     }).then(async (res) => res.json())
       .then((res) => {
         setLogOut(false)
-        if (!res.susses) throw new Error(res.data.msg);
+        if (!res.susses) throw new Error(res.msg);
         setCookies();
         toast.success(res.msg, { autoClose: 2000 });
         setUser(null)
