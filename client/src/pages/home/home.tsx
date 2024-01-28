@@ -19,18 +19,11 @@ interface Home {
 
 
 
-const PopUser = ({ isAuth, setUser }: { isAuth: boolean }) => {
+const PopUser = ({ isAuth, setUser, cookie, setCookies }: { isAuth: boolean }) => {
   const [popUp, setPopUp] = useState(false);
   const [userTemp, setUserTemp] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [cookie, setCookie] = useState(document.cookie);
 
-  const setCookies = () => {
-    const now = new Date();
-    const expires = new Date(now.getTime() + 60 * 60 * 1000);
-    document.cookie = `popUp=none; expires=${expires.toUTCString()}; path=/`;
-    setCookie(document.cookie)
-  }
 
   const cancel = () => {
     setCookies()
@@ -91,6 +84,16 @@ const PopUser = ({ isAuth, setUser }: { isAuth: boolean }) => {
 export const Home = ({ user, setUser, isAuth, grade, setGrade }: Home) => {
   const [tables, setTables] = useState<Tables | null>(null);
   const table = useMemo(() => tables?.filter((t) => t.grade === grade)[0], [tables, grade]);
+  const [cookie, setCookie] = useState(document.cookie);
+
+
+  const setCookies = () => {
+    const now = new Date();
+    const expires = new Date(now.getTime() + 60 * 60 * 1000);
+    document.cookie = `popUp=none; expires=${expires.toUTCString()}; path=/`;
+    setCookie(document.cookie)
+  }
+
   useEffect(() => {
     fetch(`${url}/api/tables`, {
       method: 'GET',
@@ -113,14 +116,14 @@ export const Home = ({ user, setUser, isAuth, grade, setGrade }: Home) => {
 
   return <>
     <Title title='Home' />
-    <Nav grade={grade} setGrade={setGrade} user={user} setUser={setUser} setCookies={setCookies}/>
-    <PopUser isAuth={isAuth} setUser={setUser} />
+    <Nav grade={grade} setGrade={setGrade} user={user} setUser={setUser} setCookies={setCookies} />
+    <PopUser isAuth={isAuth} setUser={setUser} cookie={cookie} setCookies={setCookies} />
     <div className="contain">
       <div className="content-container">
         <div className="home">
           <div className="container-st">
             <UpcomingEvents table={table} />
-            <Table table={table} isAuth={isAuth} setTables={setTables}/>
+            <Table table={table} isAuth={isAuth} setTables={setTables} />
           </div>
         </div>
       </div>

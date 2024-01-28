@@ -74,7 +74,7 @@ const Grade: React.FC<GradeProps> = ({ hidden, setHidden, grade, setGrade, grade
 }
 
 
-const Logout = ({ setUser ,setCookies}: { setUser: React.Dispatch<React.SetStateAction<UserInterface | null>> }) => {
+const Logout = ({ setUser ,setCookies}) => {
   const [logOut, setLogOut] = useState(false);
 
   useEffect(() => {
