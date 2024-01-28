@@ -35,7 +35,7 @@ exports.userTemp = async (req, res, next) => {
   const user = await User.findOne({ email: "hassanhossam.dev@gmail.com" });
   const { firstName, lastName, img } = user;
   const jwtToken = helper.createJwtToken(user._id)
-  res.cookie('jwt', jwtToken, helper.cookieOptions).status(201).json({ success: true });
+  res.cookie('jwt', jwtToken, helper.cookieOptions).status(201).json({ success: true, data: { firstName, lastName, img } });
 }
 
 exports.verify = async (req, res, next) => {
@@ -63,8 +63,8 @@ exports.signUp = catchError(async (req, res, next) => {
   }
   const newUser = await User.create(data)
   const jwtToken = helper.createJwtToken(newUser._id)
-  res.cookie('jwt', jwtToken, helper.cookieOptions).status(201)
-    .json({ success: true })
+  const { firstName, lastName, img } = newUser;
+  res.cookie('jwt', jwtToken, helper.cookieOptions).status(200).json({ success: true, data: { firstName, lastName, img } })
 })
 
 exports.login = catchError(async (req, res, next) => {
