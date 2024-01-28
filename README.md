@@ -1,5 +1,27 @@
 <header>
 <h1>PSU Schadule | <a target="_blank" href="https://lecture-app-psu.vercel.app">Demo</a></h1>
+	<span>
+A revolutionary web app for seamless lecture management at universities 🎓
+<br/>
+<br/>
+🏠 **Home Page:**
+Stay on top of your schedule with upcoming lectures featuring day, time, and a live countdown timer. Never miss a lecture again!
+<br/>
+<br/>
+📅 **Weekly Table:**
+Effortlessly manage your week with a user-friendly table. Edit, delete, or add lectures with ease – all at your fingertips!
+<br/>
+<br/>
+🔐 **Authentication:**
+Securely access your personalized schedule with login and signup pages. Log in using your email and password, or sign up with your details and a unique university verification code for added security.
+<br/>
+<br/>
+⏰ **Smart Scheduling Algorithm:**
+Our cutting-edge algorithm ensures error-free lecture timing, preventing conflicts and streamlining your academic routine. Say goodbye to scheduling headaches!
+<br/>
+<br/>
+PSU Schedule is for a smoother, more organized academic experience. Let's elevate the way you manage lectures and schedules! 💼
+	  </span>
 <img class="head-img" src="https://firebasestorage.googleapis.com/v0/b/lecture-app-50d1c.appspot.com/o/load.png?alt=media&token=d516cfd6-e3c3-4f81-9fa2-16a2acd3479a"
           alt="photo" />
 </header>
@@ -47,6 +69,7 @@
 			<ul>
 				<li>Nodejs & Express</li>
 				<li>MongoDB & Mongoose</li>
+				<li>Firebase</li>
 			    	<li>REST APIs</li>
 			        <li>validator</li>
 			        <li>JWT</li>
