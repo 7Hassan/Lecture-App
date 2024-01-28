@@ -32,29 +32,28 @@
 </ul>
 </section>
 <section>
-			<h2>Technologies Used</h2>
-  	<h2>Front side</h2>
+	<h2>Technologies Used</h2>
+  		<h3>Front side</h3>
 			<ul>
 				<li>Reactjs</li>
-        <li>Vite</li>
+                                <li>Vite</li>
 				<li>TypeScript</li>
 				<li>SCSS</li>
 				<li>MUI</li>
 				<li>Dayjs</li>
 				<li>date-fn</li>
-			</ul>
-
-    	<h2>Back side</h2>
+			</ul>	
+	<h3>Back side</h3>
 			<ul>
 				<li>Nodejs & Express</li>
 				<li>MongoDB & Mongoose</li>
-    	  <li>REST APIs</li>
-         <li>validator</li>
-          <li>JWT</li>
-           <li>xss-clean</li>
-            <li>helmet</li>
-            <li>date-fns</li>
-			</ul>
+			    	<li>REST APIs</li>
+			        <li>validator</li>
+			        <li>JWT</li>
+			        <li>xss-clean</li>
+				<li>helmet</li>
+			        <li>date-fns</li>
+			</ul>	
 		</section>
 
 <section>
@@ -64,11 +63,12 @@
 				<li>Clone this repository</li>
 				<li>Install dependencies in each side using <code>npm install</code></li>
 				<li>Start the server using <code>npm start</code></li>
+				<li>Start the client using <code>npm run dev</code></li>
 			</ol>
 		</section>
 <section>
 			<h2>Contributors</h2>
-			<p>This e-commerce website was developed by <a href="mailto:7hassan.dev@gmail.com">Hassan Hossam </a>. If you would like to contribute to this project, please feel free to submit a pull request or contact Your Name for more information.</p>
+			<p>This website was developed by <a href="mailto:hassanhossam.dev@gmail.com">Hassan Hossam </a>. If you would like to contribute to this project, please 				feel free to submit a pull request.</p>
 		</section>
 
 <section>
@@ -78,5 +78,5 @@
 </main>
 
 <footer>
-	<p>&copy; 2023 E-commerce Website. All rights reserved.</p>
+	<p>&copy; 2024 <code>PSU Schadule</code> Website. All rights reserved.</p>
 </footer>
