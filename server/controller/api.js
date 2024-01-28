@@ -14,7 +14,9 @@ exports.protectAPI = catchError(async (req, res, next) => {
 })
 
 exports.user = catchError(async (req, res, next) => {
-  res.status(200).json({ success: true })
+  const user = req.user
+  const { firstName, lastName, img } = user
+  res.status(200).json({ success: true, data: { firstName, lastName, img } });
 })
 
 
